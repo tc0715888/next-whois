@@ -11,12 +11,13 @@ export const redis = createRedisConn();
 function createRedisConn(): Redis | undefined {
   if (REDIS_HOST) {
     try {
-      return new Redis({
-        host: REDIS_HOST,
-        port: REDIS_PORT,
-        password: REDIS_PASSWORD,
-        db: REDIS_DB,
-      });
+return new Redis({
+  host: REDIS_HOST,
+  port: REDIS_PORT,
+  password: REDIS_PASSWORD,
+  db: REDIS_DB,
+  tls: {}, // <--- 添加这一行
+});
     } catch (error) {
       console.error("Failed to connect to Redis:", error);
     }
